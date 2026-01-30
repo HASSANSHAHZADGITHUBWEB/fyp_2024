@@ -1,0 +1,325 @@
+/* src/style/Login.css */
+
+/* --- 1. GLOBAL RESET --- */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevents double scrollbars */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- 2. THE SPLIT LAYOUT --- */
+.split-screen-container {
+  display: flex;
+  width: 100vw; 
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+/* --- 3. LEFT SIDE (IMAGE) --- */
+.left-pane {
+  flex: 1.3;
+  position: relative;
+  /* Make sure this path is correct */
+  background-image: url('login.jpg'); 
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.left-pane-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(30, 64, 175, 0.5), rgba(15, 23, 42, 0.9));
+  z-index: 1;
+}
+
+.welcome-text-container {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  z-index: 2;
+  max-width: 80%;
+  color: white;
+}
+
+.welcome-header {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.welcome-description {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 600px;
+  color: #e2e8f0;
+}
+
+/* --- 4. RIGHT SIDE (FORM & SCROLLING) --- */
+.right-pane {
+  flex: 1;
+  display: flex;
+  align-items: center; /* Centers form vertically */
+  justify-content: center;
+  padding: 2rem;
+  overflow: scroll;
+  background-color: #ffffff;
+  
+  /* ALLOW SCROLLING ON DESKTOP & MOBILE */
+  overflow-y: auto; 
+  height: 100vh;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 0 1rem;
+  /* Ensures margin for scrolling on short screens */
+  margin-top: auto; 
+  margin-bottom: auto;
+}
+
+/* --- NEW LOGO STYLES (Responsive) --- */
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.app-logo {
+  width: 40px; /* Desktop Size */
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.logo-text {
+  font-size: 1.25rem; /* Desktop Size */
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+/* --- TYPOGRAPHY --- */
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.1rem;
+}
+
+.login-subtitle {
+  color: #64748b;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+/* --- INPUTS --- */
+.form-group { margin-bottom: 1.5rem; }
+.input-label { display: block; font-size: 0.875rem; font-weight: 600; color: #334155; margin-bottom: 0.5rem; }
+.input-wrapper { position: relative; }
+
+.form-input {
+  width: 100%;
+  height: 3.5rem;
+  padding-left: 3rem;
+  padding-right: 1rem;
+  background-color: #f8fafc; 
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  color: #1e293b;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-input:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.15);
+  border-color: #cbd5e1;
+}
+
+.form-input:focus {
+  background-color: #ffffff;
+  transform: translateY(-2px) scale(1.02);
+  border-color: #3b82f6; 
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2), 0 0 0 4px rgba(59, 130, 246, 0.1); 
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-wrapper:hover .input-icon { color: #3b82f6; transform: translateY(-50%) scale(1.1); }
+.input-wrapper:focus-within .input-icon { color: #2563eb; transform: translateY(-50%) scale(1.1); }
+
+.password-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+.password-toggle:hover { color: #3b82f6; }
+
+/* --- BUTTON --- */
+.login-button {
+  width: 100%;
+  height: 3.25rem;
+  background-color: #1e40af;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.1);
+}
+.login-button:hover {
+  background-color: #1e3a8a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.25);
+}
+.login-button:active { transform: translateY(0); }
+
+.footer-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+.link { color: #2563eb; text-decoration: none; font-weight: 600; }
+.link:hover { text-decoration: underline; }
+
+/* --- MOBILE & RESPONSIVE RULES --- */
+@media (max-width: 900px) {
+  .left-pane { display: none; } /* Hide Image */
+  
+  .right-pane { 
+    width: 100vw; 
+    align-items: flex-start; /* Allows scrolling from top on small mobiles */
+    padding-top: 4rem; 
+  }
+
+  /* --- MAKE LOGO BIGGER ON MOBILE --- */
+  .logo-header {
+    justify-content: center; /* Center logo on mobile */
+    margin-bottom: 3rem;
+  }
+
+  .app-logo {
+    width: 60px; /* Increased from 40px */
+    height: 60px;
+  }
+
+  .logo-text {
+    font-size: 1.75rem; /* Increased from 1.25rem */
+  }
+}
+
+/*toast functioning*/
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.toast.success {
+  background-color: #16a34a; /* green */
+}
+
+.toast.error {
+  background-color: #dc2626; /* red */
+}
+
+/* Toast container */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  max-width: 90%;
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(5px);
+}
+
+/* Success Toast */
+.toast-success {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border-left: 5px solid #fff;
+}
+
+/* Error Toast */
+.toast-error {
+  background: linear-gradient(135deg, #dc3545, #e4606d);
+  border-left: 5px solid #fff;
+}
+
+/* Optional: add animation shadow pulse */
+.toast-success::before,
+.toast-error::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  animation: pulse 1.8s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.2; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+

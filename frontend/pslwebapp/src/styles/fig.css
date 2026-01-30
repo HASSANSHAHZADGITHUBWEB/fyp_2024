@@ -1,0 +1,587 @@
+/* src/styles/csslikefig.css */
+
+/* --- 1. FIGMA VARIABLES (Colors & Fonts) --- */
+:root {
+  /* Colors from Ztos Dashboard */
+  --bg-dark: #1e1e2d;       /* Sidebar Background */
+  --bg-light: #f3f6f9;      /* Main App Background */
+  --primary-blue: #3699ff;  /* Active Links & Buttons */
+  --text-white: #ffffff;
+  --text-muted: #a2a3b7;    /* Inactive Links */
+  
+  /* Card & Stats Colors */
+  --card-bg: #ffffff;
+  --success-green: #1bc5bd;
+  --danger-red: #f64e60;
+  --warning-orange: #ffa800;
+  
+  /* Spacing & Borders */
+  --radius-xl: 12px;
+  --shadow-card: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+  --sidebar-width-open: 260px;
+  --sidebar-width-closed: 70px;
+}
+
+/* --- 2. LAYOUT STYLES --- */
+body {
+  background-color: var(--bg-light);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* Prevents double scrollbars */
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+/* --- 3. SIDEBAR STYLES (Matches Ztos Image) --- */
+.sidebar {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  height: 100vh;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sidebar.open { width: var(--sidebar-width-open); }
+.sidebar.closed { width: var(--sidebar-width-closed); }
+
+.sidebar-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background-color: #1b1b29;
+  color: var(--primary-blue);
+  border-left-color: var(--primary-blue);
+}
+
+.link-text {
+  margin-left: 12px;
+  transition: opacity 0.2s;
+}
+
+/* Hide text when closed */
+.sidebar.closed .link-text, 
+.sidebar.closed .header-title {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* --- 4. STAT CARD (Matches Manager Dashboard) --- */
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3f4254;
+  margin: 8px 0;
+}
+
+.stat-label {
+  color: #b5b5c3;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* --- 5. TABLE STYLES --- */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th {
+  text-align: left;
+  padding: 16px;
+  color: #b5b5c3;
+  font-weight: 500;
+  border-bottom: 1px solid #ebedf3;
+}
+
+.custom-table td {
+  padding: 16px;
+  color: #3f4254;
+  border-bottom: 1px solid #ebedf3;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.status-active { background: #e1f0ff; color: #3699ff; }
+.status-pending { background: #fff4de; color: #ffa800; }
+
+/* for table design is */
+/* --- Add this to src/styles/csslikefig.css --- */
+
+/* Stat Card Container */
+.stat-card-container {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #f3f6f9; /* Subtle border */
+}
+
+/* Text Styles */
+.stat-title {
+  color: #b5b5c3; /* text-gray-500 */
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.stat-value {
+  color: #3f4254; /* text-gray-800 */
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+/* Icon Box */
+.stat-icon-box {
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Trend Indicator (The percentage text) */
+.stat-trend {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.trend-up { color: var(--success-green); }
+.trend-down { color: var(--danger-red); }
+
+.trend-text {
+  color: #b5b5c3;
+  font-weight: 400;
+  margin-left: 6px;
+  font-size: 13px;
+}
+
+/* Color Helpers (To match the props you pass like 'bg-green-500') */
+.bg-green-500 { background-color: var(--success-green); box-shadow: 0 4px 12px rgba(27, 197, 189, 0.2); }
+.bg-blue-500 { background-color: var(--primary-blue); box-shadow: 0 4px 12px rgba(54, 153, 255, 0.2); }
+.bg-red-500 { background-color: var(--danger-red); box-shadow: 0 4px 12px rgba(246, 78, 96, 0.2); }
+.bg-purple-500 { background-color: #8950fc; box-shadow: 0 4px 12px rgba(137, 80, 252, 0.2); }
+
+/* --- Add to src/styles/csslikefig.css --- */
+
+/* 1. Dashboard Layout Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+  gap: 24px; /* Space between cards */
+  margin-bottom: 30px;
+}
+
+/* 2. Section Titles */
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3f4254; /* Dark text */
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+/* 3. Chart & Table Containers */
+.content-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid #ebedf3;
+  margin-bottom: 30px;
+}
+
+/* 4. Color Utilities for Icons (Matches your Image) */
+.icon-bg-green { background: rgba(27, 197, 189, 0.1); color: #1bc5bd; }
+.icon-bg-blue  { background: rgba(54, 153, 255, 0.1); color: #3699ff; }
+.icon-bg-red   { background: rgba(246, 78, 96, 0.1);  color: #f64e60; }
+.icon-bg-purple{ background: rgba(137, 80, 252, 0.1); color: #8950fc; }
+
+/* sidebar styling */
+/* --- ADVANCED SIDEBAR STYLES --- */
+
+/* 1. Glassy Background & Texture */
+.sidebar {
+  /* Keep existing styles but add these: */
+  background: linear-gradient(180deg, #1e1e2d 0%, #151521 100%);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* 2. The "Active" Link (Glowing Gradient) */
+.sidebar-link.active {
+  background: linear-gradient(90deg, rgba(54, 153, 255, 0.15) 0%, rgba(54, 153, 255, 0) 100%);
+  border-left-color: #3699ff;
+  color: #3699ff;
+  text-shadow: 0 0 15px rgba(54, 153, 255, 0.4); /* Glow Effect */
+}
+
+/* 3. Hover Animation (Slide Right) */
+.sidebar-link {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth Bounce */
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  padding-left: 28px; /* Slide effect */
+  color: #ffffff;
+}
+
+/* 4. Tooltip (Shows when sidebar is closed) */
+.sidebar-tooltip {
+  position: absolute;
+  left: 70px; /* Right next to collapsed sidebar */
+  background: #3699ff;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-10px);
+  transition: all 0.2s ease;
+  z-index: 50;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+/* Show tooltip when hovering the link container */
+.sidebar-link-wrapper:hover .sidebar-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 5. User Profile Mini-Card at Bottom */
+.user-mini-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin: 0 10px 10px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.2s;
+}
+.user-mini-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* dark mode */
+/* --- DARK MODE ENGINE (Add to bottom of csslikefig.css) --- */
+
+/* 1. Default (Light Mode) Variables */
+:root {
+  --bg-app: #f3f6f9;
+  --bg-card: #ffffff;
+  --text-main: #3f4254;
+  --text-muted: #b5b5c3;
+  --border-color: #ebedf3;
+  --input-bg: #ffffff;
+}
+
+/* 2. Dark Mode Overrides */
+body.dark-mode {
+  --bg-app: #151521;      /* Deep Dark Blue */
+  --bg-card: #1e1e2d;     /* Lighter Dark Blue */
+  --text-main: #ffffff;   /* White Text */
+  --text-muted: #6d6d80;  /* Muted Text */
+  --border-color: #2b2b40;/* Dark Borders */
+  --input-bg: #151521;    /* Dark Input Background */
+}
+
+/* 3. Apply Variables to Elements */
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.content-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.section-title {
+  color: var(--text-main);
+}
+
+.custom-input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #3699ff;
+  box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.1);
+}
+
+label {
+  color: var(--text-main);
+  opacity: 0.8;
+}
+
+/* Theme Selector Cards */
+.theme-card {
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+}
+
+.theme-card:hover {
+  border-color: #3699ff;
+}
+
+.theme-card.active {
+  border-color: #3699ff;
+  background-color: rgba(54, 153, 255, 0.05);
+}
+
+/* responsiveness */
+/* --- RESPONSIVE / MOBILE DESIGN (Add to bottom) --- */
+
+@media (max-width: 768px) {
+  
+  /* 1. Layout: Fix Sidebar on Mobile */
+  .app-container {
+    position: relative; /* Needed for overlay */
+  }
+
+  .sidebar {
+    position: absolute;
+    z-index: 50;
+    height: 100%;
+    /* On mobile, 'closed' means hidden (width 0), 'open' means overlay */
+  }
+  
+  .sidebar.closed {
+    width: 0;
+    overflow: hidden;
+  }
+  
+  .sidebar.open {
+    width: 260px;
+    box-shadow: 10px 0 50px rgba(0,0,0,0.5); /* Strong shadow for overlay */
+  }
+
+  /* 2. Main Content: Use full width always */
+  .main-content {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  /* 3. Dashboard Grid: Force 1 column on phones */
+  .dashboard-grid {
+    grid-template-columns: 1fr !important; /* Stack cards vertically */
+    gap: 15px;
+  }
+
+  /* 4. Tables: Enable Horizontal Scrolling */
+  .content-card {
+    overflow-x: auto; /* Adds scrollbar if table is too wide */
+  }
+  
+  .custom-table {
+    min-width: 600px; /* Forces table to keep shape and scroll instead of squishing */
+  }
+
+  /* 5. Typography Scaling */
+  .section-title {
+    font-size: 18px !important; /* Smaller titles on mobile */
+  }
+  
+  .stat-value {
+    font-size: 20px !important;
+  }
+}
+
+/* add for addemployee.jsx */
+/* Add to fig.css */
+
+.form-container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-input {
+    padding: 12px 15px;
+    border: 1px solid #e4e6ef;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-main);
+    background: #f9f9f9;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #3699ff;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(54, 153, 255, 0.1);
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    background: #f3f6f9;
+    color: #7e8299;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-cancel:hover {
+    background: #e4e6ef;
+    color: #3f4254;
+}
+
+.btn-submit {
+    flex: 1;
+    padding: 12px;
+    background: #3699ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(54, 153, 255, 0.3);
+    transition: 0.2s;
+}
+
+.btn-submit:hover {
+    background: #187de4;
+    transform: translateY(-1px);
+}
+/* add media queries */
+/* --- EXISTING CSS (Keep your form-grid, form-container etc.) --- */
+
+/* ... previous styles ... */
+
+/* --- 📱 RESPONSIVE MEDIA QUERIES (ADD THIS) --- */
+@media (max-width: 768px) {
+  /* Stack the grid columns vertically on mobile */
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+  }
+
+  /* Reduce padding on mobile */
+  .form-container {
+    padding: 20px !important;
+  }
+
+  /* Stack buttons if screen is very small */
+  .btn-group {
+    flex-direction: column;
+  }
+
+  /* Adjust page margins */
+  .fade-in-up {
+    margin: 20px 15px !important; 
+  }
+}

@@ -1,0 +1,28 @@
+/* static/css/style.css */
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cd2020;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* H1 styling */
+h1 {
+    color: #333;
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Image styling */
+img {
+    margin-top: 20px;
+    width: 300px; /* adjust size */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
